@@ -16,6 +16,8 @@
 
     <!-- Custom CSS -->
     <link href="css/business-casual.css" rel="stylesheet">
+  
+
 
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
@@ -32,11 +34,14 @@
 
 <body>
 
+
     <div class="brand">The Perfect Cup</div>
     <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
 
     <!-- Navigation -->
-    <?php require 'nav.php'; ?>
+    <?php include 'Navbar.php';?>
+
+
 
     <div class="container">
 
@@ -56,7 +61,8 @@
                         <small>October 13, 2013</small>
                     </h2>
                     <p>Start your morning off with this great recipe for hot coffee with coconut oil and butter.</p>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+            
+                    <button id="button1" class="btn btn-default btn-lg">Read More</button>
                      <hr>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -66,7 +72,7 @@
                         <small>October 13, 2013</small>
                     </h2>
                     <p>Take the edge off with a fresh hot cup of coffee make with Irish whiskey and Irish cream.</p>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+                    <button id="button2" class="btn btn-default btn-lg">Read More</button>
                      <hr>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -76,7 +82,7 @@
                         <small>October 13, 2013</small>
                     </h2>
                     <p>Sweetened with caramel sauce and topped with whipped cream, this will make you happy any time of the day.</p>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+                    <button id="button3" class="btn btn-default btn-lg">Read More</button>
                     <hr>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -104,7 +110,7 @@
 				<p>Sample Text</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="close" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -121,7 +127,7 @@
 				<p>Sample Text</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="close" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -138,10 +144,10 @@
 				<p>Sample Text</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn close" data-dismiss="modal">Close</button>
 			</div>
 		</div>
-	</div>
+    </div>
     <footer>
         <div class="container">
             <div class="row">
@@ -150,7 +156,13 @@
                 </div>
             </div>
         </div>
+
     </footer>
+    
+</div>
+   
+
+  
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -159,5 +171,49 @@
     <script src="js/bootstrap.min.js"></script>
 
 </body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+     
+ 
+ var model = '' ; // Tracks model of prodact
+
+ let btn_1 = document.querySelector(".btn");  // select button read more
+ 
+// select model of prodact
+
+ document.getElementById('button1').addEventListener("click", function() {
+    model =$('#myModal'); 
+});
+
+document.getElementById('button2').addEventListener("click", function() {
+    model =$('#myModal2'); 
+});
+document.getElementById('button3').addEventListener("click", function() {
+    model =$('#myModal3'); 
+});
+
+// Displays read more
+ $('.btn').click(function() {
+
+  
+model.addClass('modal in');
+  $('.modal-dialog').addClass('modal-content');
+  model.css("display", "block");
+
+  
+      $('.close').click(function (e) { 
+        $('.btn-Read').fadeIn();
+    
+        model.removeClass('modal in');
+        model.addClass('modal fade');
+        model.css("display", "none");
+      e.stopPropagation();
+        
+    });
+ });
+
+</script>
 
 </html>
