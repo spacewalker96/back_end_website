@@ -176,10 +176,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
      
- 
- var model = '' ; // Tracks model of prodact
 
- let btn_1 = document.querySelector(".btn");  // select button read more
  
 // select model of prodact
 
@@ -203,13 +200,13 @@ model.addClass('modal in');
   model.css("display", "block");
 
   
-      $('.close').click(function (e) { 
+      $('.close').click(function () { 
         $('.btn-Read').fadeIn();
     
         model.removeClass('modal in');
         model.addClass('modal fade');
         model.css("display", "none");
-      e.stopPropagation();
+  
         
     });
  });
