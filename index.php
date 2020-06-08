@@ -37,7 +37,7 @@
 
     <!-- Navigation -->
    
-    <?php include 'Navbar.php';?>
+    <?php include 'nav.php';?>
 
     <div class="container">
         <div class="row">

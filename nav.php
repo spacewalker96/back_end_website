@@ -16,16 +16,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="about.html">About</a>
+                        <a href="about.php">About</a>
                     </li>
                     <li>
-                        <a href="blog.html">Blog</a>
+                        <a href="register.php">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact</a>
+                        <a href="contact.php">Contact</a>
                     </li>
                 </ul>
             </div>
