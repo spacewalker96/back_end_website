@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,6 +41,107 @@
     <?php include 'nav.php';?>
 
 
+    <?php
+        
+
+        $msg = "";
+        if (isset($_POST['send'])) {
+            $fname = $_POST['fname'];
+            $email = $_POST['email'];
+            $message = $_POST['message'];
+            $subject = 'contact form';
+            $to = "hosni96.ht@gmail.com";
+            $headers = "From :". $email;
+            $email_msg = "New e-mail from ".$fname." ".$email.".\r\n".$message;
+
+            if (strlen($fname)<2){
+
+                $msg = "<div class='alert alert-danger'>Your Name must be longer</div>";
+    
+            }else if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+
+                $msg = "<div class='alert alert-danger'>Please write an valid email!!</div>";
+    
+            }else if ($message == ""){
+
+                $msg = "<div class='alert alert-danger'>You can not send empty messag </div>";
+    
+            }else{
+
+                require 'phpmailer/PHPMailerAutoload.php';
+                //     $mail = new PHPMailer;
+
+                //     // $mail->SMTPDebug = 4;                               // Enable verbose debug output
+
+                //     $mail->isSMTP();                                      // Set mailer to use SMTP
+                //     $mail->Host = 'smtp.gmail.com;';  // Specify main and backup SMTP servers
+                //     $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                //     $mail->Username = 'php.allah.test@gmail.com';                 // SMTP username
+                //     $mail->Password = 'AZERTY123';                           // SMTP password
+                //     $mail->SMTPSecure = 'tls'; 
+                //     // $mail->SMTPAutoTLS = false;                           // Enable TLS encryption, `ssl` also accepted
+                //     $mail->Port = 587;                                    // TCP port to connect to
+
+                //     $mail->setFrom($email);
+                //     $mail->addAddress('hosni96.ht@gmail.com');     // Add a recipient
+                 
+
+                    
+                //     $mail->isHTML(true);                                  // Set email format to HTML
+
+                //     $mail->Subject = $subject;
+                //     $mail->Body    = $email_msg;
+                   
+
+                    // if(!$mail->send()) {
+                    //     echo 'Message could not be sent.';
+                    //     echo 'Mailer Error: ' . $mail->ErrorInfo;
+                    // } else {
+                    //     $msg = "<div class='alert alert-success'>your message has been sent successfully</div>";
+                    // }
+                // }
+                
+
+            
+
+            define ('GUSER','php.allah.test@gmail.com');
+            define ('GPWD','AZERTY123');
+            
+            
+            // make a separate file and include this file in that. call this function in that file.
+            
+            function smtpmailer($to, $email, $fname, $subject, $email_msg) { 
+                global $error;
+                $mail = new PHPMailer();  // create a new object
+                $mail->IsSMTP(); // enable SMTP
+                $mail->SMTPDebug = 2;  // debugging: 1 = errors and messages, 2 = messages only
+                $mail->SMTPAuth = true;  // authentication enabled
+                $mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for GMail
+                $mail->SMTPAutoTLS = false;
+                $mail->Host = 'smtp.gmail.com';
+                $mail->Port = 587;
+            
+                $mail->Username = GUSER;  
+                $mail->Password = GPWD;           
+                $mail->SetFrom($email, $fname);
+                $mail->Subject = $subject;
+                $mail->Body = $email_msg;
+                $mail->AddAddress($to);
+                if(!$mail->send()) {
+                    echo 'Message could not be sent.';
+                    echo 'Mailer Error: ' . $mail->ErrorInfo;
+                } else {
+                    $msg = "<div class='alert alert-success'>your message has been sent successfully</div>";
+                }
+            }
+
+            }
+
+        }
+    
+    
+    ?>
+
     <div class="container">
 
         <div class="row">
@@ -64,7 +166,7 @@
                     </p>
                     <p>Address:
                         <strong>3481 Melrose Place
-                            <br>Beverly Hills, CA 90210</strong>
+                            <br>Beverly Hills, CA 90210 <?php echo $msg; ?></strong>
                     </p>
                 </div>
                 <div class="clearfix"></div>
@@ -79,8 +181,10 @@
                         <strong>form</strong>
                     </h2>
                     <hr>
+                    <?php echo $msg; ?>
                     <div id="add_err2"></div>
-                    <form role="form">
+                    <p style="color:#FF0000; font-size:12px;">
+                    <form role="form" action ="contact.php" method = "post">
                         <div class="row">
                             <div class="form-group col-lg-4">
                                 <label>Name</label>
@@ -96,7 +200,7 @@
                                 <textarea class="form-control" id="message" name="message" maxlength="100" rows="6"></textarea>
                             </div>
                             <div class="form-group col-lg-12">
-                                <button type="submit" id="contact" class="btn btn-default">Submit</button>
+                                <button type="submit" id="contact" name="send" class="btn btn-default">Submit</button>
                             </div>
                         </div>
                     </form>
